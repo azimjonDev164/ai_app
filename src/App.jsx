@@ -1,8 +1,16 @@
+import { Route, Routes } from "react-router-dom";
 import "./App.css";
-import AIAssistant from "./components/Ai";
+import Layout from "./components/Layout";
+import { AIAssistant } from "./components";
 
 function App() {
-  return <AIAssistant />;
+  return (
+    <Routes>
+      <Route path="/" element={<Layout />}>
+        <Route index element={<AIAssistant />} />
+      </Route>
+    </Routes>
+  );
 }
 
 export default App;
