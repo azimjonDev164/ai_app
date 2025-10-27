@@ -8,7 +8,7 @@ export default function Layout() {
       <Navbar />
       <div className="flex flex-col-reverse md:flex-row">
         <Sidebar />
-        <main className="w-full h-[calc(100vh-133px)] md:h-[calc(100vh-75px)] overflow-y-auto">
+        <main className="w-full h-[calc(100vh-133px)] md:h-[calc(100vh-75px)] overflow-y-auto p-4">
           <Outlet />
         </main>
       </div>

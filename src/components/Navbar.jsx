@@ -1,3 +1,11 @@
+import {
+  SignedIn,
+  SignedOut,
+  SignIn,
+  SignInButton,
+  UserButton,
+} from "@clerk/clerk-react";
+
 export default function Navbar() {
   return (
     <div className="flex justify-between items-center py-3 px-8 bg-white text-black h-[72px]">
@@ -14,10 +22,15 @@ export default function Navbar() {
         />
       </div>
 
-      <div className="md:w-[200px]">
-        <button className="py-2 px-3 bg-blue-600 text-white rounded-[10px]">
-          sing in
-        </button>
+      <div className="md:w-[200px] flex justify-end">
+        <SignedOut>
+          <SignInButton>
+            <button className="btn btn-outline btn-primary">sing in</button>
+          </SignInButton>
+        </SignedOut>
+        <SignedIn>
+          <UserButton />
+        </SignedIn>
       </div>
     </div>
   );

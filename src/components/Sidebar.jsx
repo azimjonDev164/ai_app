@@ -3,9 +3,20 @@ import {
   faGear,
   faHome,
   faShoppingCart,
+  faUserGroup,
 } from "@fortawesome/free-solid-svg-icons";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function Sidebar() {
+  const [active, setActive] = useState("Home");
+  const navigate = useNavigate();
+  const list = [
+    { title: "Home", link: "/", icon: faHome },
+    { title: "Setting", link: "/setting", icon: faGear },
+    { title: "Marketplace", link: "/maketplace", icon: faShoppingCart },
+  ];
+
   return (
     <div className="resize-x overflow-auto min-w-full h-[60px]  md:min-w-[250px] md:h-[calc(100vh-73px)] bg-white text-black">
       <div className="hidden md:flex flex-col p-3 bg-gray-100 mx-2 rounded-2xl mt-7 shadow-xl">
@@ -44,22 +55,49 @@ export default function Sidebar() {
       </div>
       {/* menu list */}
       <ul className="flex flex-row  md:flex-col mx-2 mt-3">
-        <li className="text-[15px] text-gray-500 cursor-pointer md:text-xl w-full  md:border-r-4 border-yellow-500 mx-1 md:mt-2">
-          <FontAwesomeIcon className="text-yellow-500 mr-1" icon={faHome} />{" "}
-          Home
-        </li>
-        <li className="text-[15px] text-gray-500 cursor-pointer md:text-xl w-full md:border-r-4 border-yellow-500 mx-1 md:mt-2">
-          <FontAwesomeIcon className="text-yellow-500 mr-1" icon={faGear} />{" "}
-          Setting
-        </li>
-        <li className="text-[15px] text-gray-500 cursor-pointer md:text-xl w-full md:border-r-4 border-yellow-500 mx-1 md:mt-2">
-          <FontAwesomeIcon
-            className="text-yellow-500 mr-1"
-            icon={faShoppingCart}
-          />{" "}
-          Matketplace
-        </li>
+        {list.map((item) => (
+          <li
+            onClick={() => {
+              setActive(item.title);
+              navigate(item.link);
+            }}
+            className={`text-[15px] text-gray-500 cursor-pointer md:text-[15px] w-full ${
+              item.title === active &&
+              " md:border-r-4 border-yellow-500 text-yellow-500"
+            } mx-1 md:mt-2`}
+          >
+            <FontAwesomeIcon
+              className={`${item.title === active && "text-yellow-500"} mr-1`}
+              icon={item.icon}
+            />{" "}
+            {item.title}
+          </li>
+        ))}
       </ul>
+
+      <div className="mx-2 h-0.5 bg-gray-200 mt-5"></div>
+
+      <div className="hidden md:flex flex-col mx-2 mt-3">
+        <h3 className="flex gap-2 mb-3 text-[15px] text-gray-500 cursor-pointer">
+          <FontAwesomeIcon
+            className="text-xl text-gray-400"
+            icon={faUserGroup}
+          />
+          Your community
+        </h3>
+        <ul className="h-[150px] overflow-y-auto [&::-webkit-scrollbar]:w-0.5 [&::-webkit-scrollbar-thumb]:bg-gray-500">
+          {[1, 2, 4, 5].map((item) => (
+            <li key={item} className="flex gap-2 items-center mb-2">
+              <img
+                className="w-[50px] h-[50px] rounded-full"
+                src="https://photos.peopleimages.com/picture/202306/2837133-png-studio-shot-of-a-handsome-man-pointing-to-copyspace--fit_400_400.jpg"
+                alt=""
+              />
+              <p className="text-sm font-semibold">Azimjon Polvonov</p>
+            </li>
+          ))}
+        </ul>
+      </div>
     </div>
   );
 }
