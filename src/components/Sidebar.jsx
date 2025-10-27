@@ -1,3 +1,10 @@
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faGear,
+  faHome,
+  faShoppingCart,
+} from "@fortawesome/free-solid-svg-icons";
+
 export default function Sidebar() {
   return (
     <div className="resize-x overflow-auto min-w-full h-[60px]  md:min-w-[250px] md:h-[calc(100vh-73px)] bg-white text-black">
@@ -35,16 +42,21 @@ export default function Sidebar() {
           See your profile
         </button>
       </div>
-
       {/* menu list */}
       <ul className="flex flex-row  md:flex-col mx-2 mt-3">
-        <li className="font-semibold text-[16px] md:text-xl w-full  md:border-r-4 border-yellow-500 mx-1 md:mt-2">
+        <li className="text-[15px] text-gray-500 cursor-pointer md:text-xl w-full  md:border-r-4 border-yellow-500 mx-1 md:mt-2">
+          <FontAwesomeIcon className="text-yellow-500 mr-1" icon={faHome} />{" "}
           Home
         </li>
-        <li className="font-semibold text-[16px] md:text-xl w-full md:border-r-4 border-yellow-500 mx-1 md:mt-2">
+        <li className="text-[15px] text-gray-500 cursor-pointer md:text-xl w-full md:border-r-4 border-yellow-500 mx-1 md:mt-2">
+          <FontAwesomeIcon className="text-yellow-500 mr-1" icon={faGear} />{" "}
           Setting
         </li>
-        <li className="font-semibold text-[16px] md:text-xl w-full md:border-r-4 border-yellow-500 mx-1 md:mt-2">
+        <li className="text-[15px] text-gray-500 cursor-pointer md:text-xl w-full md:border-r-4 border-yellow-500 mx-1 md:mt-2">
+          <FontAwesomeIcon
+            className="text-yellow-500 mr-1"
+            icon={faShoppingCart}
+          />{" "}
           Matketplace
         </li>
       </ul>
